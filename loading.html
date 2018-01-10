@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<style type="text/css">
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			#show{
+				position: absolute;
+				z-index: 200000;
+				cursor: pointer;
+			}
+			#hide{
+				position: absolute;
+				z-index: 200000;
+				top: 60px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="show">
+			显示
+		</div>
+		<div id="hide">
+			隐藏
+		</div>
+		
+		<script type="text/javascript">
+			$(function(){
+				var maskController = function(){};
+				maskController.prototype={
+					isShow:false,
+					isCreate:false,
+					$mask:$('<div id="ajaxLoadingMask"></div>'),
+					$img: $('<img src=""/>'),
+				}
+				maskController.methods = function(){
+					return{
+						//设置蒙版风格样式
+						setStyle:function($mask,$img){
+							$mask.css({
+								'position':'absolute',
+								'left':'0',
+								'right':'0',
+								'top':'0',
+								'bottom':'0',
+								'margin':'auto',
+								'width':'100%',
+								'height':'100%',
+								'background':'rgba(255,255,255,0.2)',
+								'z-index':'100000'
+							});
+							
+							$img.css({
+								'position':'absolute',
+								'left':'0',
+								'right':'0',
+								'top':'0',
+								'bottom':'0',
+								'margin':'auto',
+							});
+						},
+						createMask:function(loadingimgSrc){
+							var mMask = maskController.prototype.$mask;
+							var mImg = maskController.prototype.$img;
+							mImg.attr('src',loadingimgSrc);
+							mMask.append(mImg);
+							this.setStyle(mMask,mImg);
+							$("body").append(mMask);
+							maskController.prototype.isCreate = true;
+						},
+						show:function(loadingimgSrc){
+							if (!maskController.prototype.isCreate) {
+								this.createMask(loadingimgSrc);
+								maskController.prototype.isShow = !maskController.prototype.isShow
+							}else{
+								maskController.prototype.$mask.css('display','block');
+							}
+						},
+						hide:function(){
+							if (maskController.prototype.isCreate) {
+								maskController.prototype.$mask.css('display','none');
+							}
+						},
+						init:function(){
+							
+						},
+					}
+				}();
+				
+				
+					$("#show").click(function(){
+						maskController.methods.show("img/loading_icon1.gif");
+					});
+					
+					$("#hide").click(function(){
+						maskController.methods.hide();
+						console.log('隐藏');
+					});
+			});
+		</script>
+	</body>
+</html>
