@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>三级选项卡</title>
+		<link rel="stylesheet" type="text/css" href="css/threeTable.css"/>
+	</head>
+	<body>
+		<div>
+			<ul class="one">
+				<li>第一</li>
+				<li>第二</li>
+				<li>第三</li>
+			</ul>
+			
+			<ul class="two">
+				<li class="show">
+					<ul class="nav">
+						<li>111子级第一</li>
+						<li>111子级第二</li>
+						<li>111子级第三</li>
+					</ul>
+					
+					<ul class="article">
+						<li class="show">内容1内容1内容1内容1内容1内容1</li>
+						<li>内容2内容2内容2内容2内容2内容2</li>
+						<li>内容3内容3内容3内容3内容3内容3</li>
+					</ul>
+				</li>
+				<li>
+
+					<ul class="nav">
+						<li>222子级第一</li>
+						<li>222子级第二</li>
+						<li>222子级第三</li>
+					</ul>
+					
+					<ul class="article">
+						<li>内容1内容1内容1内容1内容1内容1</li>
+						<li>内容2内容2内容2内容2内容2内容2</li>
+						<li>内容3内容3内容3内容3内容3内容3</li>
+					</ul>
+				</li>
+				<li>
+
+					<ul class="nav">
+						<li>333子级第一</li>
+						<li>333子级第二</li>
+						<li>333子级第三</li>
+					</ul>
+					
+					<ul class="article">
+						<li>内容1内容1内容1内容1内容1内容1</li>
+						<li>内容2内容2内容2内容2内容2内容2</li>
+						<li>内容3内容3内容3内容3内容3内容3</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$("ul.one>li").click(function(){
+				var $thisBom = $("ul.two>li").eq($(this).index());
+					$thisBom.addClass('show')
+						.siblings().removeClass('show');
+					$thisBom.find('ul.article>li:first-child')
+							.addClass('show')
+							.siblings().removeClass('show')
+							
+			})
+			
+			$("ul.two>li>ul.nav>li").click(function(){
+				$(this)
+						.closest('li.show')
+						.find('ul.article>li')
+						.eq($(this).index()).addClass('show')
+						.siblings().removeClass('show');
+			})
+			
+			
+		</script>
+	</body>
+</html>

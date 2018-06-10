@@ -1,0 +1,54 @@
+//三级选项卡
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+ul{
+    list-style:none;
+    margin-bottom: 30px;
+}
+
+ul.one{
+    text-align: center;
+    >li{
+        display: inline-block;
+        width: 30%;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        font-size: 22px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+}
+
+ul.two{
+    text-align: center;
+    >li{
+        display: none;
+        >ul.nav{
+            >li{
+                display: inline-block;
+                width: 25%;
+                height: 45px;
+                line-height: 45px;
+                text-align: center;
+                border: 1px solid #CCCCCC;
+                font-size: 18px;
+                cursor: pointer;
+            }
+        }
+        >ul.article{
+            >li{
+                display: none;
+            }
+            >li.show{
+                 display: block;
+            }
+        }
+    }
+    >li.show{
+        display: block;
+    }
+}

@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+ul {
+  list-style: none;
+  margin-bottom: 30px;
+}
+ul.one {
+  text-align: center;
+}
+ul.one > li {
+  display: inline-block;
+  width: 30%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 22px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+ul.two {
+  text-align: center;
+}
+ul.two > li {
+  display: none;
+}
+ul.two > li > ul.nav > li {
+  display: inline-block;
+  width: 25%;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  border: 1px solid #CCCCCC;
+  font-size: 18px;
+  cursor: pointer;
+}
+ul.two > li > ul.article > li {
+  display: none;
+}
+ul.two > li > ul.article > li.show {
+  display: block;
+}
+ul.two > li.show {
+  display: block;
+}
+/*# sourceMappingURL=threeTable.css.map */
