@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text"  name="" id="box" value="" />
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// demo 程序将粘贴事件绑定到 document 上
+			$("#box")[0].addEventListener('paste',function(e){
+		        if ( !(e.clipboardData && e.clipboardData.items) ) {
+		            return;
+		        }
+		        console.log(e.clipboardData);
+		        for (var i = 0, len = e.clipboardData.items.length; i < len; i++) {
+		            var item = e.clipboardData.items[i];
+		            if (item.kind === "string") {
+		                item.getAsString(function (str) {
+		                    console.log(str);
+		                })
+		            } else if (item.kind === "file") {
+		                var f= item.getAsFile();
+		                var reader = new FileReader();
+		                imgUrlBase64 = reader.readAsDataURL(f);
+			            reader.onload = function (e) {
+			            	$("body").append($("<img src="+e.srcElement.result+" />"));
+			            }
+		            }
+		        }
+		    });
+		    
+		</script>
+	</body>
+</html>
